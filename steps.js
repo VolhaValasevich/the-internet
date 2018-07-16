@@ -41,6 +41,14 @@ class Steps {
             this.util.closeBrowser();
         })
     }
+
+    FloatingMenu() {
+        this.util.openUrl("http://the-internet.herokuapp.com/floating_menu").then(() => {
+            return this.util.scrollAndCheckMenu(2000);
+        }).then(() => {
+            this.util.closeBrowser();
+        })
+    }
 }
 
 module.exports = Steps;

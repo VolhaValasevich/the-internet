@@ -86,6 +86,15 @@ class Util {
             console.log(text + " uploaded");
         })
     }
+
+    scrollAndCheckMenu(height) {
+        const menuHeight = 37.39;
+        this.browser.executeScript(`window.scrollTo(0,${height});`).then(() => {
+            return this.browser.findElement(webdriver.By.id("menu")).getAttribute("style");
+        }).then((style) => {
+            if (style === `top: ${height - menuHeight}px;`) console.log("Menu bar has moved");
+        })
+    }
 }
 
 module.exports = Util;
