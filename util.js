@@ -43,6 +43,37 @@ class Util {
         })
     }
 
+    dragAndDrop() {
+        let columna;
+        let columnb;
+        this.browser.findElement(webdriver.By.css('div[id = "column-a"]')).then((el) => {
+            columna = el;
+        }).then(() => {
+            return this.browser.findElement(webdriver.By.css('div[id = "column-b"]'));
+        }).then((el) => {
+            columnb = el;
+        }).then(() => {
+            this.browser.sleep(1000);
+        }).then(() => {
+            this.browser.actions().mouseMove(columna) //????????????????????????????????????????????????
+                .mouseDown()
+                .mouseMove(columnb)
+                .mouseUp()
+                .perform();
+        }).then(() => {
+            return this.browser.findElement(webdriver.By.css('div[id = "column-a"] header')).getText()
+        }).then((text) => {
+            console.log(text);
+        }).then(() => {
+            return this.browser.findElement(webdriver.By.css('div[id = "column-b"] header')).getText()
+        }).then((text) => {
+            console.log(text);
+        })
+    }
+
+    mouseOut() {
+        this.browser.actions().mouseMove({ x: 1000, y: 1000 });
+    }
 }
 
 module.exports = Util;

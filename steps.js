@@ -19,6 +19,20 @@ class Steps {
             this.util.closeBrowser();
         })
     }
+
+    DragAndDrop() {
+        this.util.openUrl("http://the-internet.herokuapp.com/drag_and_drop").then(() => {
+            return this.util.dragAndDrop();
+        }).then(() => {
+            this.util.closeBrowser();
+        })
+    }
+
+    ExitIntent() {
+        this.util.openUrl("http://google.com").then(() => {
+            return this.util.mouseOut();
+        })
+    }
 }
 
 module.exports = Steps;
