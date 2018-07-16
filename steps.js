@@ -33,6 +33,14 @@ class Steps {
             return this.util.mouseOut();
         })
     }
+
+    FileUpload() {
+        this.util.openUrl("http://the-internet.herokuapp.com/upload").then(() => {
+            return this.util.fileUpload("D:\\Downloads\\test.txt");
+        }).then(() => {
+            this.util.closeBrowser();
+        })
+    }
 }
 
 module.exports = Steps;

@@ -74,6 +74,18 @@ class Util {
     mouseOut() {
         this.browser.actions().mouseMove({ x: 1000, y: 1000 });
     }
+
+    fileUpload(path) {
+        this.browser.findElement(webdriver.By.id("file-upload")).then((el) => {
+            return el.sendKeys(path);
+        }).then(() => {
+            return this.browser.findElement(webdriver.By.id("file-submit")).click();
+        }).then(() => {
+            return this.browser.findElement(webdriver.By.id("uploaded-files")).getText();
+        }).then((text) => {
+            console.log(text + " uploaded");
+        })
+    }
 }
 
 module.exports = Util;
