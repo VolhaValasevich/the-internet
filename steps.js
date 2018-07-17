@@ -56,6 +56,16 @@ class Steps {
             this.util.closeBrowser();
         }).catch((err) => { this.catchError(err) })
     }
+
+    KeyPress() {
+        this.util.openUrl("http://the-internet.herokuapp.com/key_presses").then(() => {
+            return this.util.pressKey("A");
+        }).then(() => {
+            this.util.closeBrowser();
+        }).catch((err) => {
+            this.catchError(err);
+        })
+    }
 }
 
 module.exports = Steps;

@@ -88,6 +88,14 @@ class Util {
             if (style === `top: ${height - menuHeight}px;`) console.log("Menu bar has moved");
         })
     }
+
+    pressKey(key) {
+        this.browser.actions().sendKeys(key).perform().then(() => {
+            return this.browser.findElement(webdriver.By.id("result")).getText();
+        }).then((text) => {
+            if (text === "You entered: " + key) console.log("Key was entered");
+        })
+    }
 }
 
 module.exports = Util;
