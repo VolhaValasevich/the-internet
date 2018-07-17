@@ -72,7 +72,13 @@ class Util {
     }
 
     mouseOut() {
-        this.browser.actions().mouseMove({ x: 1000, y: 1000 });
+        this.browser.findElement(webdriver.By.id("content")).then((el) => {
+            this.browser.actions().mouseMove(el, { x: -1000, y: -1000 }).perform();
+        }).then(() => {
+            this.browser.sleep(1000);
+        }).then(() => {
+            this.browser.findElement(webdriver.By.css("div.modal-footer p")).click();
+        });
     }
 
     fileUpload(path) {

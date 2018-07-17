@@ -6,10 +6,15 @@ class Steps {
         this.util = new Util();
     }
 
+    catchError(err) {
+        console.log(err);
+        this.util.closeBrowser();
+    }
+
     BasicAuthorization() {
         this.util.authorize("http://the-internet.herokuapp.com/basic_auth", "admin", "admin").then(() => {
             this.util.closeBrowser();
-        })
+        }).catch((err) => { catchError(err) })
     }
 
     FindBrokenImages() {
@@ -17,7 +22,7 @@ class Steps {
             return this.util.findBrokenImages();
         }).then(() => {
             this.util.closeBrowser();
-        })
+        }).catch((err) => { catchError(err) })
     }
 
     DragAndDrop() {
@@ -25,13 +30,15 @@ class Steps {
             return this.util.dragAndDrop();
         }).then(() => {
             this.util.closeBrowser();
-        })
+        }).catch((err) => { catchError(err) })
     }
 
     ExitIntent() {
-        this.util.openUrl("http://google.com").then(() => {
+        this.util.openUrl("http://the-internet.herokuapp.com/exit_intent").then(() => {
             return this.util.mouseOut();
-        })
+        }).then(() => {
+            this.util.closeBrowser();
+        }).catch((err) => { catchError(err) })
     }
 
     FileUpload() {
@@ -39,7 +46,7 @@ class Steps {
             return this.util.fileUpload("D:\\Downloads\\test.txt");
         }).then(() => {
             this.util.closeBrowser();
-        })
+        }).catch((err) => { catchError(err) })
     }
 
     FloatingMenu() {
@@ -47,7 +54,7 @@ class Steps {
             return this.util.scrollAndCheckMenu(2000);
         }).then(() => {
             this.util.closeBrowser();
-        })
+        }).catch((err) => { catchError(err) })
     }
 }
 
