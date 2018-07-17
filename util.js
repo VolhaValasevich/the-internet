@@ -1,4 +1,5 @@
-var webdriver = require("selenium-webdriver");
+const webdriver = require("selenium-webdriver");
+const fs = require("fs");
 
 class Util {
 
@@ -44,31 +45,17 @@ class Util {
     }
 
     dragAndDrop() {
-        let columna;
-        let columnb;
-        this.browser.findElement(webdriver.By.css('div[id = "column-a"]')).then((el) => {
-            columna = el;
-        }).then(() => {
-            return this.browser.findElement(webdriver.By.css('div[id = "column-b"]'));
-        }).then((el) => {
-            columnb = el;
-        }).then(() => {
-            this.browser.sleep(1000);
-        }).then(() => {
-            this.browser.actions().mouseMove(columna) //????????????????????????????????????????????????
-                .mouseDown()
-                .mouseMove(columnb)
-                .mouseUp()
-                .perform();
-        }).then(() => {
-            return this.browser.findElement(webdriver.By.css('div[id = "column-a"] header')).getText()
-        }).then((text) => {
-            console.log(text);
-        }).then(() => {
-            return this.browser.findElement(webdriver.By.css('div[id = "column-b"] header')).getText()
-        }).then((text) => {
-            console.log(text);
-        })
+        const script = fs.readFileSync("dnd.js");
+        this.browser.executeScript(script + "$('#column-a').simulateDragDrop({ dropTarget: '#column-b'});")
+            .then(() => {
+                return this.browser.findElement(webdriver.By.css('div[id = "column-a"] header')).getText()
+            }).then((text) => {
+                if (text === "B") console.log("Column A changed");
+            }).then(() => {
+                return this.browser.findElement(webdriver.By.css('div[id = "column-b"] header')).getText()
+            }).then((text) => {
+                if (text === "A") console.log("Column B changed");
+            })
     }
 
     mouseOut() {

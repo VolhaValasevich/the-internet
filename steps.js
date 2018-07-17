@@ -14,7 +14,7 @@ class Steps {
     BasicAuthorization() {
         this.util.authorize("http://the-internet.herokuapp.com/basic_auth", "admin", "admin").then(() => {
             this.util.closeBrowser();
-        }).catch((err) => { catchError(err) })
+        }).catch((err) => { this.catchError(err) })
     }
 
     FindBrokenImages() {
@@ -22,7 +22,7 @@ class Steps {
             return this.util.findBrokenImages();
         }).then(() => {
             this.util.closeBrowser();
-        }).catch((err) => { catchError(err) })
+        }).catch((err) => { this.catchError(err) })
     }
 
     DragAndDrop() {
@@ -30,7 +30,7 @@ class Steps {
             return this.util.dragAndDrop();
         }).then(() => {
             this.util.closeBrowser();
-        }).catch((err) => { catchError(err) })
+        }).catch((err) => { this.catchError(err) })
     }
 
     ExitIntent() {
@@ -38,7 +38,7 @@ class Steps {
             return this.util.mouseOut();
         }).then(() => {
             this.util.closeBrowser();
-        }).catch((err) => { catchError(err) })
+        }).catch((err) => { this.catchError(err) })
     }
 
     FileUpload() {
@@ -46,7 +46,7 @@ class Steps {
             return this.util.fileUpload("D:\\Downloads\\test.txt");
         }).then(() => {
             this.util.closeBrowser();
-        }).catch((err) => { catchError(err) })
+        }).catch((err) => { this.catchError(err) })
     }
 
     FloatingMenu() {
@@ -54,7 +54,7 @@ class Steps {
             return this.util.scrollAndCheckMenu(2000);
         }).then(() => {
             this.util.closeBrowser();
-        }).catch((err) => { catchError(err) })
+        }).catch((err) => { this.catchError(err) })
     }
 }
 
