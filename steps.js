@@ -12,13 +12,13 @@ class Steps {
     }
 
     BasicAuthorization() {
-        this.util.authorize("http://the-internet.herokuapp.com/basic_auth", "admin", "admin").then(() => {
+        return this.util.authorize("http://the-internet.herokuapp.com/basic_auth", "admin", "admin").then(() => {
             this.util.closeBrowser();
         }).catch((err) => { this.catchError(err) })
     }
 
     FindBrokenImages() {
-        this.util.openUrl("http://the-internet.herokuapp.com/broken_images").then(() => {
+        return this.util.openUrl("http://the-internet.herokuapp.com/broken_images").then(() => {
             return this.util.findBrokenImages();
         }).then(() => {
             this.util.closeBrowser();
@@ -26,7 +26,7 @@ class Steps {
     }
 
     DragAndDrop() {
-        this.util.openUrl("http://the-internet.herokuapp.com/drag_and_drop").then(() => {
+        return this.util.openUrl("http://the-internet.herokuapp.com/drag_and_drop").then(() => {
             return this.util.dragAndDrop();
         }).then(() => {
             this.util.closeBrowser();
@@ -34,7 +34,7 @@ class Steps {
     }
 
     ExitIntent() {
-        this.util.openUrl("http://the-internet.herokuapp.com/exit_intent").then(() => {
+        return this.util.openUrl("http://the-internet.herokuapp.com/exit_intent").then(() => {
             return this.util.mouseOut();
         }).then(() => {
             this.util.closeBrowser();
@@ -42,7 +42,7 @@ class Steps {
     }
 
     FileUpload() {
-        this.util.openUrl("http://the-internet.herokuapp.com/upload").then(() => {
+        return this.util.openUrl("http://the-internet.herokuapp.com/upload").then(() => {
             return this.util.fileUpload("D:\\Downloads\\test.txt");
         }).then(() => {
             this.util.closeBrowser();
@@ -50,7 +50,7 @@ class Steps {
     }
 
     FloatingMenu() {
-        this.util.openUrl("http://the-internet.herokuapp.com/floating_menu").then(() => {
+        return this.util.openUrl("http://the-internet.herokuapp.com/floating_menu").then(() => {
             return this.util.scrollAndCheckMenu(2000);
         }).then(() => {
             this.util.closeBrowser();
@@ -58,7 +58,7 @@ class Steps {
     }
 
     KeyPress() {
-        this.util.openUrl("http://the-internet.herokuapp.com/key_presses").then(() => {
+        return this.util.openUrl("http://the-internet.herokuapp.com/key_presses").then(() => {
             return this.util.pressKey("A");
         }).then(() => {
             this.util.closeBrowser();
